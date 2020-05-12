@@ -69,7 +69,7 @@ a {text-decoration: none;color: inherit;}
   background-color: var(--primaryColorHover);
   height: 5rem;
   display: grid;
-  grid-template-columns: 4rem 1fr 4rem;
+  grid-template-columns: 6rem 1fr 6rem;
   padding: 0 15%;
   align-items: center;
   z-index: 999;

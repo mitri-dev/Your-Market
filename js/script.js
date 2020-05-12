@@ -271,7 +271,7 @@ async function startCart() {
               <img src="${product.image}" alt="item">
               <!-- <a class="item-link" href="${product.link}"> To Active Img Link -->
               <div class="item-img--screen">
-                  <button class="add-to-cart" data-id="${product.id}">Add To Cart</button>
+                  <button class="add-to-cart" data-id="${product.id}">Añadir Al Carro</button>
               </div>
           </div>
           <a data-id="${product.id}" class="item-title">${product.title}</a>
@@ -296,7 +296,7 @@ async function startCart() {
               <img src="${product.image}" alt="item">
               <!-- <a class="item-link" href="${product.link}"> To Active Img Link -->
               <div class="item-img--screen">
-                  <button class="add-to-cart" data-id="${product.id}">Add To Cart</button>
+                  <button class="add-to-cart" data-id="${product.id}">Añadir Al Carro</button>
               </div>
           </div>
           <a data-id="${product.id}" class="item-title">${product.title}</a>
@@ -317,22 +317,22 @@ async function startCart() {
       const { id } = btn.dataset;
       let inCart = cart.find(item => item.id === id);
       if (inCart) {
-        btn.textContent = 'In Cart';
+        btn.textContent = 'En Carro';
         btn.classList.add('in-cart');
         btn.disabled = true;
       } else {
-        btn.textContent = 'Add To Cart';
+        btn.textContent = 'Añadir Al Carro';
         btn.classList.remove('in-cart');
         btn.disabled = false;
       }
 
       const addToCart = (e) => {
-        if(e.target.textContent === 'In Cart') {
-          e.target.textContent = 'Add To Cart';
+        if(e.target.textContent === 'En Carro') {
+          e.target.textContent = 'Añadir Al Carro';
           e.target.classList.remove('in-cart');
           e.target.disabled = false;
         } else {
-          e.target.textContent = 'In Cart';
+          e.target.textContent = 'En Carro';
           e.target.classList.add('in-cart');
           e.target.disabled = true;
           // Get product
@@ -381,7 +381,7 @@ async function startCart() {
     <div class="cart-item--contents">
         <h4>${item.title}</h4>
         <h5>$${item.price}</h5>
-        <h4 class="remove-item" data-id="${item.id}">remove</h4>
+        <h4 class="remove-item" data-id="${item.id}">quitar</h4>
     </div>
     <div class="cart-item--amount">
         <h4 class="item-total-title">Total</h4>
@@ -425,7 +425,7 @@ async function startCart() {
     saveCart();
     let btn = getSingleBtn(id);
     btn.disabled = false;
-    btn.textContent = 'Add To Cart';
+    btn.textContent = 'Añadir Al Carro';
     btn.classList.remove('in-cart');
   }
 
@@ -594,7 +594,7 @@ function loadPaypal() {
       return actions.order.create({
         purchase_units: [
           {
-            description: 'Total In Cart',
+            description: 'Total En Carro',
             amount: {
               currency_code: "USD",
               value: cartTotal
