@@ -11,6 +11,53 @@
 let products;
 let categories;
 
+  // Getting the products - Populates Array of Products
+  async function getProducts() {
+    if(sessionStorage.getItem('productsBPS')) {
+      products = JSON.parse(sessionStorage.getItem('productsBPS'));
+
+      categories = products
+        .map(product => product.category)
+        .reduce((obj, e) => {
+          if(!obj[e]){
+            obj[e] = 0;
+          }
+          obj[e]++;
+          return obj;
+        }, {});
+      categories.todos = products.length;
+
+    } else {
+      const res = await fetch('./js/products.json');
+      const data = await res.json();
+      
+      products = data.items.map(item => {
+        const { title, price } = item.fields;
+        const { id } = item.sys;
+        const image = item.fields.image.fields.file.url;
+        const link = '#item-link';
+        const { amount } = item.fields;
+        const { category } = item.fields;
+        return { title, price, id, image, link, amount, category };
+      });
+
+      categories = products
+        .map(product => product.category)
+        .reduce((obj, e) => {
+          if(!obj[e]){
+            obj[e] = 0;
+          }
+          obj[e]++;
+          return obj;
+        }, {});
+      categories.todos = products.length;
+
+
+      sessionStorage.setItem('productsBPS', JSON.stringify(products));
+    }
+  }
+
+
 
 // Elements
 const nav = document.querySelector('nav');
@@ -213,52 +260,6 @@ async function startCart() {
   }
   let addToCartBtns;
   let cartTotal
-
-  // Getting the products - Populates Array of Products
-  async function getProducts() {
-    if(sessionStorage.getItem('productsBPS')) {
-      products = JSON.parse(sessionStorage.getItem('productsBPS'));
-
-      categories = products
-        .map(product => product.category)
-        .reduce((obj, e) => {
-          if(!obj[e]){
-            obj[e] = 0;
-          }
-          obj[e]++;
-          return obj;
-        }, {});
-      categories.todos = products.length;
-
-    } else {
-      const res = await fetch('./js/products.json');
-      const data = await res.json();
-      
-      products = data.items.map(item => {
-        const { title, price } = item.fields;
-        const { id } = item.sys;
-        const image = item.fields.image.fields.file.url;
-        const link = '#item-link';
-        const { amount } = item.fields;
-        const { category } = item.fields;
-        return { title, price, id, image, link, amount, category };
-      });
-
-      categories = products
-        .map(product => product.category)
-        .reduce((obj, e) => {
-          if(!obj[e]){
-            obj[e] = 0;
-          }
-          obj[e]++;
-          return obj;
-        }, {});
-      categories.todos = products.length;
-
-
-      sessionStorage.setItem('productsBPS', JSON.stringify(products));
-    }
-  }
 
   // UI - Display Product
   function displayAllProducts() {
@@ -525,6 +526,7 @@ async function getProductsPage() {
   document.querySelector('main').innerHTML = data;
 
   // Start Cart
+  await getProducts();
   startCart();
   loadCategories();
   startSearchbar();
@@ -650,7 +652,7 @@ async function loadCategories() {
   const categoriesDOMArray = document.querySelectorAll('.category-list');
   // Listeners
   categoriesDropdownDOMArray.forEach(btn => btn.addEventListener('click', openCategories))
-
+  await getProducts();
   const keys = Object.keys(categories);
   for (const key of keys) {
     categoriesDOMArray.forEach(list => list.innerHTML += `<a href="./productos.html?categoria=${key}"><li>${key}</li></a>`);
@@ -707,9 +709,10 @@ function startSearchbar() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////* START SEARCHBAR  */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function getProductsTag() {
+async function getProductsTag() {
   // Elements
   const productsContent = document.querySelector('.products--content');
+  await getProducts();
   const keys = Object.keys(categories);
   let counter = 0;
   for (const key of keys) {
