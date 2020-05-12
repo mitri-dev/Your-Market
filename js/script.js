@@ -655,7 +655,7 @@ async function loadCategories() {
   await getProducts();
   const keys = Object.keys(categories);
   for (const key of keys) {
-    categoriesDOMArray.forEach(list => list.innerHTML += `<a href="./productos.html?categoria=${key}"><li>${key}</li></a>`);
+    categoriesDOMArray.forEach(list => list.innerHTML += `<li><a href="./productos.html?categoria=${key}">${key}</a></li>`);
   }
 
   function openCategories() {
