@@ -1,0 +1,84 @@
+<!doctype html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Your Market</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="./css/imgs/icon.png" />
+</head>
+
+<body>
+    <header>
+        <div class="brand-banner">
+            <img src="./css/imgs/icon.png" class="logo">
+            <div class="search">
+                <input class="search-input" type="text" placeholder="buscar un producto...">
+                <label class="search-btn" for="test"><img src="./css/svgs/search.svg" alt="search"></label>
+                <ul class="search-result"></ul>
+            </div>
+            <div class="cart-btn">
+                <img src="./css/svgs/ShoppingCart.svg" class="cart-btn-svg">
+                <div class="cart-items"></div>
+            </div>
+        </div>
+        <nav>
+            <a class="nav-links" id="inicio" href="./"><img src="./css/svgs/home.svg" alt="house" /></a>
+        </nav>
+
+        <nav class="mobile">
+            <div class="burger">
+                <a class="nav-links" id="inicio" href="./">
+                    <img src="./css/svgs/home.svg" alt="house" />
+                </a>
+                <div class="category-dropdown nav-links" id="inicio" href="./">
+                    <div class="nav-links" id="inicio"><img class="category-dropdown" src="./css/svgs/category.svg"
+                            alt="category" />
+                    </div>
+                    <div class="category-list-mobile"></div>
+                </div>
+                <div class="burger-menu display-none">
+                </div>
+            </div>
+            <div class="cart-btn cart-btn-mobile">
+                <img src="./css/svgs/ShoppingCart.svg" class="cart-btn-svg">
+                <div class="cart-items cart-items-mobile">0</div>
+            </div>
+        </nav>
+    </header>
+
+    <main></main>
+
+    <footer>
+        <ul>
+            <li>Brandy's Pet Style &copy; 2020</li>
+        </ul>
+    </footer>
+
+    <!-- CART -->
+    <div class="cart-overlay">
+        <div class="cart">
+            <span class="close-cart">
+                <img src="./css/svgs/x.svg">
+            </span>
+            <h2>Your Cart</h2>
+            <div class="cart-content"></div>
+            <div class="cart-footer">
+                <h3>your total: $<span class="cart-total">0</span></h3>
+                <a class="checkout-btn-cart banner-btn" href="./checkout.html">Checkout</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src=" js/script.js"></script>
+    <script>
+        getProductsPage();
+    </script>
+
+</body>
+
+</html>

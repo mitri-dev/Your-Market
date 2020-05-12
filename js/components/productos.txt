@@ -1,0 +1,13 @@
+<section class="products-wrapper">
+    <div class="category-section">
+        <h1 class="banner-title">categorías</h1>
+        <ul class="category-list open"></ul>
+
+    </div>
+    <div>
+    <h1 class="banner-title">TITLE</h1>
+    <section class="products-section">
+        <ul class="products-list"></ul>
+    </section>
+    </div>
+</section>

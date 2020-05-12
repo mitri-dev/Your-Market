@@ -1,0 +1,41 @@
+        <div class="brand-banner">
+            <img src="./css/svgs/BrandysPetShopLogo.svg" class="logo">
+            <div class="search">
+                <input class="search-input" type="text" placeholder="buscar un producto...">
+                <label class="search-btn" for="test"><img src="./css/svgs/search.svg" alt="search"></label>
+            </div>
+            <div class="cart-btn">
+                <img src="./css/svgs/ShoppingCart.svg" class="cart-btn-svg">
+                <div class="cart-items"></div>
+            </div>
+        </div>
+        <nav>
+            <!-- <img class="logo" src="./css/svgs/BrandysPetShopLogo.svg"> -->
+            <div class="delete-this"></div>
+            <div class="nav-links-wrapper">
+                <a class="nav-links" id="inicio" href="#">Inicio</a>
+                <a class="nav-links" id="nosotros" href="#">nosotros</a>
+                <a class="nav-links" id="productos" href="#">Productos</a>
+                <a class="nav-links" id="estrellas" href="#">Estrellas</a>
+                <a class="nav-links" id="contacto" href="#">Contácto</a>
+            </div>
+            <!-- <div class="cart-btn">
+                <img src="./css/svgs/ShoppingCart.svg" class="cart-btn-svg">
+                <div class="cart-items"></div>
+            </div> -->
+        </nav>
+
+        <nav class="mobile">
+            <div class="burger"><img src="./css/svgs/Burguer.svg" alt="burger"></div>
+            <div class="cart-btn cart-btn-mobile">
+                <img src="./css/svgs/ShoppingCart.svg" class="cart-btn-svg">
+                <div class="cart-items cart-items-mobile">0</div>
+            </div>
+            <div class="burger-menu">
+                <a class="nav-links" id="inicio" href="#">Inicio</a>
+                <a class="nav-links" id="nosotros" href="#">nosotros</a>
+                <a class="nav-links" id="productos" href="#">Productos</a>
+                <a class="nav-links" id="estrellas" href="#">Estrellas</a>
+                <a class="nav-links" id="contacto" href="#">Contácto</a>
+            </div>
+        </nav>

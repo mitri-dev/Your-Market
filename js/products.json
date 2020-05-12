@@ -1,0 +1,140 @@
+{
+  "items": [
+    {
+      "sys": {
+        "id": "1"
+      },
+      "fields": {
+        "category": "camas",
+        "title": "cama queen",
+        "price": 10.99,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./css/imgs/products/product-1.jpeg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "id": "2"
+      },
+      "fields": {
+        "category": "camas",
+        "title": "cama king",
+        "price": 12.99,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./css/imgs/products/product-2.jpeg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "id": "3"
+      },
+      "fields": {
+        "category": "camas",
+        "title": "cama individual",
+        "price": 12.99,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./css/imgs/products/product-3.jpeg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "id": "4"
+      },
+      "fields": {
+        "category": "camas",
+        "title": "cama matrimonial",
+        "price": 22.99,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./css/imgs/products/product-4.jpeg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "id": "5"
+      },
+      "fields": {
+        "category": "electrodomésticos",
+        "title": "nevera",
+        "price": 88.99,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./css/imgs/products/product-5.jpeg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "id": "6"
+      },
+      "fields": {
+        "category": "muebles",
+        "title": "vestidor",
+        "price": 32.99,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./css/imgs/products/product-6.jpeg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "id": "7"
+      },
+      "fields": {
+        "category": "muebles",
+        "title": "sofa",
+        "price": 45.99,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./css/imgs/products/product-7.jpeg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "id": "8"
+      },
+      "fields": {
+        "category": "muebles",
+        "title": "mesa",
+        "price": 33.99,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./css/imgs/products/product-8.jpeg"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+<section class="error">
+  Error 404 Not Found. <br>
+  Parece que el recurso que esta buscando no existe.
+</section>

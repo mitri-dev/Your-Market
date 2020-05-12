@@ -1,0 +1,14 @@
+<section class="producto">
+    <h1 class="banner-title">TITLE</h1>
+    <div class="contenido">
+        <div>
+            <img src="IMG_SRC" alt="">
+        </div>
+        <div class="descripcion">
+            <h3>$PRICE</h3>
+            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, laboriosam nulla accusamus
+                praesentium totam ad dolore aspernatur. Ipsa, sunt maiores?</h4>
+            <button class="add-to-cart" data-id="DATA_ID">Add To Cart</button>
+        </div>
+    </div>
+</section>

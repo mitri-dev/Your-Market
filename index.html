@@ -1,0 +1,165 @@
+<!doctype html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Your Market</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="./css/imgs/icon.png" />
+</head>
+
+<body>
+    <header>
+        <div class="brand-banner">
+            <img src="./css/imgs/icon.png" class="logo">
+            <div class="search">
+                <input class="search-input" type="text" placeholder="buscar un producto...">
+                <label class="search-btn" for="test"><img src="./css/svgs/search.svg" alt="search"></label>
+                <ul class="search-result"></ul>
+            </div>
+            <div class="cart-btn">
+                <img src="./css/svgs/ShoppingCart.svg" class="cart-btn-svg">
+                <div class="cart-items"></div>
+            </div>
+        </div>
+        <nav>
+            <div class="nav-links-wrapper">
+                <a class="nav-links" id="home" href="#">Inicio</a>
+                <a class="nav-links" id="products" href="#">Productos</a>
+                <a class="nav-links" id="contact" href="#">Contácto</a>
+            </div>
+        </nav>
+
+        <nav class="mobile">
+            <div class="burger"><img src="./css/svgs/Burguer.svg" alt="burger"></div>
+            <div class="cart-btn cart-btn-mobile">
+                <img src="./css/svgs/ShoppingCart.svg" class="cart-btn-svg">
+                <div class="cart-items cart-items-mobile">0</div>
+            </div>
+            <div class="burger-menu">
+                <a class="nav-links" id="home" href="#">Inicio</a>
+                <a class="nav-links" id="products" href="#">Productos</a>
+                <a class="nav-links" id="contact" href="#">Contácto</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="home">
+            <h1 class="banner-title">Inicio</h1>
+            <div class="home-1">
+                <ul class="slider">
+                    <li class="slide">
+                        <div>Imagen</div>
+                    </li>
+                    <li class="slide">
+                        <div>Imagen</div>
+                    </li>
+                    <li class="slide">
+                        <div>Imagen</div>
+                    </li>
+                    <div class="slider-controls">
+                        <div class="slider-arrows">
+                            <div class="slider-arrow left">&lt;</div>
+                            <div class="slider-arrow right">&gt;</div>
+                        </div>
+                        <ul class="slider-dots">
+                            <li class="slider-dot active"></li>
+                            <li class="slider-dot"></li>
+                            <li class="slider-dot"></li>
+                        </ul>
+                    </div>
+                </ul>
+
+            </div>
+        </section>
+
+        <section class="products">
+            <h1 class="banner-title">productos</h1>
+
+            <ul class="products--content"></ul>
+
+            <div class="products--all">
+                <a href="./productos.html?categoria=todos" class="banner-title">Ver Todos Los Productos</a>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h1 class="banner-title">contacto</h1>
+            <div class="contact--content">
+                <form>
+                    <p class="form-message">¡Déjanos tus datos y nos estaremos comunicando en el menor tiempo posible!
+                    </p>
+                    <div>
+                        <div class="input-wrapper">
+                            <label for="name">Nombre</label><input required class="input" type="text" name="name"
+                                id="name">
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="email">E-mail</label><input required class="input" type="email" name="email"
+                                id="email">
+                        </div>
+                    </div>
+                    <div class="msg-wrapper">
+                        <label for="msg">Mensaje:</label><textarea required minlength="7" class="msg" name="msg"
+                            id="msg"></textarea>
+                    </div>
+                    <input class="submit" type="submit" value="ENVIAR">
+                </form>
+                <div class="contact--socials">
+                    <div>
+                        <li>
+                            <p><label>Dirección:</label>Carrera 43a #8sur - 15, Oficina 402 Medellín - Antioquia</p>
+                        </li>
+                        <li>
+                            <p><label>Telefono:</label>0424-424-4242</p>
+                        </li>
+                        <li>
+                            <p><label>Correo:</label>ejemplo@dirección.com</p>
+                        </li>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <ul>
+                <li>Your Market &copy; 2020</li>
+            </ul>
+        </footer>
+
+        <!-- CART -->
+        <div class="cart-overlay">
+            <div class="cart">
+                <span class="close-cart">
+                    <img src="./css/svgs/x.svg">
+                </span>
+                <h2>Your Cart</h2>
+                <div class="cart-content"></div>
+                <div class="cart-footer">
+                    <h3>your total: $<span class="cart-total">0</span></h3>
+                    <a href="./checkout.html" class="checkout-btn-cart banner-btn">Checkout</a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const form = document.querySelector('form');
+            const submit = form.querySelector('.submit');
+        </script>
+        <script src="./js/script.js"></script>
+        <script>
+            startSlider();
+            startCart();
+            form.addEventListener('submit', sendForm);
+            startSearchbar();
+            getProductsTag();
+        </script>
+</body>
+
+</html>
