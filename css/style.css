@@ -30,7 +30,14 @@
   --primaryColorHover2: #2d2d2d; /* -1 */
   --primaryColorComplement: #555; /* -15 SATURATION | +15 BRIGHTNESS */
   --primaryColorHoverComplement: #444; /* -2 */
-
+  
+  --primaryColor: #ff6a07;
+  --secondaryColor: #f4f4f4;
+  --secondaryColorHover: #eee;
+  --primaryColorHover: #f56200; /* -2 */
+  --primaryColorHover2: #2d2d2d; /* -1 */
+  --primaryColorComplement: #555; /* -15 SATURATION | +15 BRIGHTNESS */
+  --primaryColorHoverComplement: #444; /* -2 */
 
   --backgroundcolorTransition: background-color 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
   --primaryFontColor: #fff;
@@ -67,6 +74,7 @@ a {text-decoration: none;color: inherit;}
   top: 0;
   width: 100%;
   background-color: var(--primaryColorHover);
+  background-color: #fff;
   height: 5rem;
   display: grid;
   grid-template-columns: 6rem 1fr 6rem;
@@ -138,6 +146,7 @@ a {text-decoration: none;color: inherit;}
   justify-content: center;
   align-items: center;
   background-color: var(--primaryColor);
+  background-color: var(--secondaryColor);
   border: 2px solid #ddd;
   height: 2rem;
   width: 2rem;
@@ -165,6 +174,7 @@ a {text-decoration: none;color: inherit;}
   font-size: 0.8rem;
   top: 1.4rem;
   margin-left: 1.5rem;
+  color: #fff;
 }
 .brand-banner .cart-btn img {
   height: 45%;
@@ -816,6 +826,7 @@ a.banner-title:hover {
   cursor: pointer;
   min-width: 5rem;
   background-color: var(--primaryColor);
+  background-color: var(--secondaryColor);
   transition: var(--backgroundcolorTransition);
 }
 .cart-btn img {
@@ -827,6 +838,7 @@ a.banner-title:hover {
 .cart-btn:hover {
   background-color: #2d2d2d;
   background-color: var(--primaryColorHover2);
+  background-color: var(--secondaryColorHover);
 }
 .cart-btn {
   padding-right: 0.5rem;
@@ -842,7 +854,7 @@ a.banner-title:hover {
 	font-size: 18px;
 	position: absolute;
 	top: 0.4em;
-	background-color: var(--primaryColorComplement);
+	background-color: var(--primaryColor);
 	height: 1.5em;
 	width: 1.5em;
 	border-radius: 50%;
@@ -854,7 +866,7 @@ a.banner-title:hover {
 }
 
 .cart-btn:hover .cart-items {
-  background-color: var(--primaryColorHoverComplement); /* -2 of the original */
+  background-color: var(--primaryColorHover); /* -2 of the original */
 }
 
 /* CART */
@@ -1165,6 +1177,7 @@ text-transform: capitalize;
 }
 .add-to-cart:hover {background-color: var(--primaryColorHover);}
 .add-to-cart.in-cart:hover {background-color:  var(--primaryColorHoverComplement);}
+.add-to-cart.in-cart:hover {background-color:  #f56200; cursor: pointer;}
 .item-img--screen:hover .add-to-cart {transform: translateX(0);}
 .item-title {
   display: block;

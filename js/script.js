@@ -10,6 +10,7 @@
 // Global Variables
 let products;
 let categories;
+let cartTotal;
 
   // Getting the products - Populates Array of Products
   async function getProducts() {
@@ -187,7 +188,7 @@ function startTransferForm() {
   })
 
   function showPreview() {
-    const img = this.files[0]; // will return a File object containing information about the selected file
+    const img = this.files[0]; // will return a File object containing in'$ '+formation about the selected file
     // File validations here (you may want to make sure that the file is an image)
     const imgWrappers = document.querySelectorAll('.transfer-wrapper--form-img');
     
@@ -231,12 +232,7 @@ function startTransferForm() {
     } 
   }
   function displayCurrency() {
-    function format(n) {
-      return n.toFixed(2).replace('.', ',').replace(/\d{3}(?=(\d{3})*,)/g, function(s) {
-        return '.' + s
-      })
-    }
-    this.value = `${this.dataset.currency} ${format(+this.value)}`;
+    this.value = `${this.dataset.currency} ${'$ '+format(+this.value)}`;
   }
 
 }
@@ -333,7 +329,6 @@ async function startCart() {
     cart = [];
   }
   let addToCartBtns;
-  let cartTotal
 
   // UI - Display Product
   function displayAllProducts() {
@@ -713,6 +708,10 @@ function selectPayment() {
     const selectedPayment = paymentDOM.querySelector(`.${selectDOM.value}`);
     [...paymentDOM.children].forEach(child => child.classList.add('display-none'));
     selectedPayment.classList.remove('display-none');
+    if(selectDOM.value === 'zelle') {
+      const amountInput = document.getElementById('amount-zelle');
+      amountInput.value = '$ '+format(cartTotal);
+    }
   };
   
   changePayment();
@@ -792,4 +791,13 @@ async function getProductsTag() {
     counter++
     if(counter < keys.length) productsContent.innerHTML += `<a href="./productos.html?categoria=${key}"><li>${key}</li></a>`;
   }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////* HELPER FUNCTIONS  */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function format(n) {
+  return n.toFixed(2).replace('.', ',').replace(/\d{3}(?=(\d{3})*,)/g, function(s) {
+    return '.' + s
+  })
 }
