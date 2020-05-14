@@ -600,8 +600,7 @@ async function getProductsPage() {
   document.querySelector('main').innerHTML = data;
 
   // Start Cart
-  await getProducts();
-  startCart();
+  await startCart();
   loadCategories();
   startSearchbar();
 }
@@ -728,7 +727,6 @@ async function loadCategories() {
   const categoriesDOMArray = document.querySelectorAll('.category-list');
   // Listeners
   categoriesDropdownDOMArray.forEach(btn => btn.addEventListener('click', openCategories))
-  await getProducts();
   const keys = Object.keys(categories);
   for (const key of keys) {
     categoriesDOMArray.forEach(list => list.innerHTML += `<li><a href="./productos.html?categoria=${key}">${key}</a></li>`);
@@ -788,7 +786,6 @@ function startSearchbar() {
 async function getProductsTag() {
   // Elements
   const productsContent = document.querySelector('.products--content');
-  await getProducts();
   const keys = Object.keys(categories);
   let counter = 0;
   for (const key of keys) {

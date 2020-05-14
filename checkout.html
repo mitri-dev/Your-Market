@@ -219,12 +219,15 @@
         </script>
     <script src=" js/script.js"></script>
     <script>
-        startCart();
-        loadCategories();
-        selectPayment();
-        loadPaypal();
-        startSearchbar();
-        startTransferForm();
+        async function start() {
+            await startCart();
+            loadCategories();
+            selectPayment();
+            loadPaypal();
+            startSearchbar();
+            startTransferForm();
+        }
+        start();
     </script>
 
 </body>

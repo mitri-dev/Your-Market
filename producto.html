@@ -90,8 +90,11 @@
 
     <script src=" js/script.js"></script>
     <script>
-        getProductPage();
-        loadCategories();
+        async function start() {
+            getProductPage();
+            loadCategories();
+        }
+        start();
     </script>
 
 </body>

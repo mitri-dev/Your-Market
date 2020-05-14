@@ -77,7 +77,10 @@
 
     <script src=" js/script.js"></script>
     <script>
-        getProductsPage();
+        async function start() {
+            await getProductsPage();
+        }
+        start();
     </script>
 
 </body>

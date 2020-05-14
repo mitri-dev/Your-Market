@@ -158,12 +158,15 @@
         </script>
         <script src="./js/script.js"></script>
         <script>
-            startSlider();
-            startCart();
-            form.addEventListener('submit', sendForm);
-            loadCategories();
-            startSearchbar();
-            getProductsTag();
+            async function start() {
+                await startCart();
+                startSlider();
+                form.addEventListener('submit', sendForm);
+                loadCategories();
+                startSearchbar();
+                getProductsTag();
+            }
+            start();
         </script>
 </body>
 
