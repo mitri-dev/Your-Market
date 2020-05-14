@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Your Market</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="icon" href="./css/imgs/icon.png" />
 </head>
@@ -65,48 +66,136 @@
                     <h2>Carrito</h2>
                     <div class="cart-content"></div>
                     <div class="cart-footer">
-                        <h3>your total: $<span class="cart-total">0</span></h3>
+                        <h3>Total: $<span class="cart-total">0</span></h3>
                         <p>Método de Pago:</p>
                         <select class="payment-select">
                             <option value="none" id="none">- Seleccionar -</option>
                             <option value="paypal" id="paypal">PayPal</option>
-                            <option value="transferencia" id="transferencia">Transferencia</option>
+                            <option value="transferencia" id="transferencia">Transferencia - Nacional</option>
+                            <option value="zelle" id="zelle">Transferencia - Zelle</option>
                             <option value="credit" id="credit">Tarjeta</option>
                         </select>
                         <div class="payment-list">
+
+                            <!-- PAYPAY -->
                             <div class="paypal-btn paypal display-none"></div>
+
+                            <!-- TRANSFERENCIA - NACIONAL -->
                             <div class="transferencia display-none">
                                 <div class="transfer-wrapper">
                                     <p class="transfer-wrapper--title">N° De Cuentas</p>
-                                    <ul class="transfer-wrapper--list">
+                                    <ul class="transfer-wrapper--list national-list">
                                         <li>
                                             <p>bod</p>
-                                            <p>0116-4242-42-4242424242</p>
+                                            <p class="national-number">0116-XXXX-XX-XXXXXXXXXX</p>
                                         </li>
                                         <li>
                                             <p>bancaribe</p>
-                                            <p>0114-4242-42-4242424242</p>
+                                            <p class="national-number">0114-XXXX-XX-XXXXXXXXXX</p>
                                         </li>
                                         <li>
                                             <p>provincial</p>
-                                            <p>0108-4242-42-4242424242</p>
+                                            <p class="national-number">0108-XXXX-XX-XXXXXXXXXX</p>
                                         </li>
                                         <li>
                                             <p>banesco</p>
-                                            <p>0134-4242-42-4242424242</p>
+                                            <p class="national-number">0134-XXXX-XX-XXXXXXXXXX</p>
                                         </li>
                                         <li>
                                             <p>mercantil</p>
-                                            <p>0105-4242-42-4242424242</p>
+                                            <p class="national-number">0105-XXXX-XX-XXXXXXXXXX</p>
                                         </li>
                                         <li>
                                             <p>bnc</p>
-                                            <p>0191-4242-42-4242424242</p>
+                                            <p class="national-number">0191-XXXX-XX-XXXXXXXXXX</p>
                                         </li>
                                     </ul>
 
+                                    <form class="transfer-wrapper--form">
+                                        <p class="form-message">Una vez realizada la transferencia, por
+                                            favor complete los siguientes campos:
+                                        </p>
+                                        <div class="input-grid">
+                                            <div class="input-wrapper">
+                                                <label for="date">Fecha: </label>
+                                                <input class="input" type="date" name="date" id="date" required />
+                                            </div>
+                                            <div class="input-wrapper">
+                                                <label for="amount">Monto: </label>
+                                                <input class="input input-amount" data-currency="Bs." type="text"
+                                                    name="amount" id="amount" required />
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="id">N° de Transacción: </label>
+                                            <input class="input" type="text" name="id" id="id" required />
+                                        </div>
+
+                                        <div>
+                                            <label for="image-national">
+                                                Captura:
+                                                <span class="image-span">seleccionar archivo...</span>
+                                            </label>
+                                            <input class="input-file" type="file" name="image-national"
+                                                id="image-national" required />
+                                            <div class="transfer-wrapper--form-img"></div>
+                                        </div>
+
+                                        <input class="submit" type="submit" value="enviar">
+                                    </form>
+
                                 </div>
                             </div>
+
+                            <!-- TRANSFERENCIA - ZELLE -->
+                            <div class="zelle display-none">
+                                <div class="transfer-wrapper">
+                                    <p class="transfer-wrapper--title">Datos:</p>
+                                    <ul class="transfer-wrapper--list transfer-wrapper--list-zelle">
+                                        <li>
+                                            <p><span>Nombre:</span> Juan</p>
+                                            <p><span>Apellido:</span> Gutierrez</p>
+                                            <p><span>E-mail:</span> email@example.com</p>
+                                        </li>
+                                    </ul>
+                                    <form class="transfer-wrapper--form">
+                                        <p class="form-message">Una vez realizada la transferencia, por
+                                            favor complete los siguientes campos:
+                                        </p>
+                                        <div class="input-grid">
+                                            <div class="input-wrapper">
+                                                <label for="date">Fecha: </label>
+                                                <input class="input" type="date" name="date" id="date" required />
+                                            </div>
+                                            <div class="input-wrapper">
+                                                <label for="amount">Monto: </label>
+                                                <input class="input input-amount" data-currency="$" type="text"
+                                                    name="amount" id="amount" required />
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="id">N° de Transacción: </label>
+                                            <input class="input" type="text" name="id" id="id" required />
+                                        </div>
+
+                                        <div>
+                                            <label for="image-zelle">
+                                                Captura:
+                                                <span class="image-span">seleccionar archivo...</span>
+                                            </label>
+                                            <input class="input-file" type="file" name="image-zelle" id="image-zelle"
+                                                required />
+                                            <div class="transfer-wrapper--form-img"></div>
+                                        </div>
+
+                                        <input class="submit" type="submit" value="enviar">
+                                    </form>
+
+                                </div>
+                            </div>
+
                             <div class="credit display-none">Tarjeta</div>
                             <div class="none display-none"></div>
                         </div>
@@ -134,6 +223,8 @@
         loadCategories();
         selectPayment();
         loadPaypal();
+        startSearchbar();
+        startTransferForm();
     </script>
 
 </body>

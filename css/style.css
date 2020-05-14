@@ -569,16 +569,14 @@ form p {
 form label {font-size: 85%; margin-bottom: 0.2rem;cursor: pointer;}
 form div {
   margin: 0.5rem 0;
-  display: -webkit-box;
-  display: flex;
-  flex-wrap: wrap;
   width: 100%;
 }
 form .input-wrapper{
   width: 100%;
+  display: grid;
 }
 form .input {
-  flex-basis: 100%;
+  width: 100%;
   font-family: inherit;
   font-size: 90%;
   border: 0;
@@ -633,29 +631,6 @@ footer {
   -webkit-box-align: center;
           align-items: center;
   cursor: default;
-}
-
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////* START OF PAYMENT */
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-.error, .success {
-  min-height: 5em;
-  display: grid;
-  padding: 1em;
-}
-.error > *, .success > * {
-  margin: 0.2em 0;
-  margin-right: auto;
-}
-.error {
-  color: red;
-  border: 1px solid red;
-  align-content: center;
-}
-.success {
-  color: green;
-  border: 1px solid green;
-  justify-content: start;
 }
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -751,13 +726,17 @@ a.banner-title:hover {
 .transfer-wrapper {
   border: 1px solid #333;
   background-color: #fff;
-  padding: 1rem;
+  padding: 3rem 1rem;
   text-align: left;
 }
 .transfer-wrapper--title {
   text-align: center;
   text-decoration: underline;
+  text-transform: uppercase;
+  padding-bottom: 2rem;
 }
+.transfer-wrapper--list {padding-bottom: 3rem;}
+
 .transfer-wrapper--list li {
   border-bottom: 1px dotted #333;
   display: grid;
@@ -766,6 +745,62 @@ a.banner-title:hover {
   padding: 1rem;
 }
 .transfer-wrapper--list li:last-of-type {border: 0;}
+
+.transfer-wrapper--list.national-list li {
+  grid-template-columns: 1fr 2fr;
+}
+.transfer-wrapper--list .national-number {
+  font-size: 0.9rem;
+}
+
+.transfer-wrapper--form {
+  padding-top: 3rem;
+  border-top: 1px solid;
+  font-size: 100%;
+}
+
+.transfer-wrapper--form-img img { width: 100%;}
+.transfer-wrapper--form .image-span {
+  display: block;
+  font-size: 90%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  text-align: center;
+  border: 1px solid #00000080;
+  color: #000000dd;
+} 
+
+.transfer-wrapper--form .input-grid { 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.transfer-wrapper--form .input-wrapper {
+  display: -moz-inline-grid;
+  display: inline-grid;
+  width: 100%;
+  padding-right: 0.5rem;
+}
+.transfer-wrapper--form .input-wrapper:last-of-type {padding-right: 0;}
+
+.input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////* START OF ZELLE */
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.transfer-wrapper--list-zelle p{
+  padding: 1rem;
+}
+.transfer-wrapper--list-zelle span{
+  display: block;
+  text-decoration: underline;
+}
 
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -909,7 +944,7 @@ a.banner-title:hover {
 .checkout-cart.cart-overlay h2 { margin-top: 1em; }
 
 .checkout-cart p {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .checkout-cart h3 {font-size: inherit;}
@@ -1334,3 +1369,25 @@ text-transform: capitalize;
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////////////////////////* END OF RESPONSIVE QUERIES */
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////* START OF PAYMENT */
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.error, .success {
+  min-height: 5em;
+  display: grid !important;
+  padding: 1em;
+}
+.error > *, .success > * {
+  margin: 0.2em 0;
+  margin-right: auto;
+}
+.error {
+  color: red !important;
+  border: 1px solid red !important;
+  align-content: center !important;
+}
+.success {
+  color: green;
+  border: 1px solid green;
+  justify-content: start;
+}

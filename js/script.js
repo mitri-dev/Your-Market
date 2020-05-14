@@ -148,14 +148,16 @@ function showMenu() {
   burgerMenu.className.includes('open') ?  burgerMenu.classList.remove('open') : burgerMenu.classList.add('open') 
 }
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////* START OF CONTACT FORM */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function sendForm(e) {
   e.preventDefault();
   form.querySelector('.submit').setAttribute('disabled', true);
+  const url = './js/post.php';
   // Create and populate formData
   const formData = new FormData(form);
-  const res = await fetch(
-    'https://script.google.com/macros/s/AKfycbyUBra9cMW7F9X9oHj5FSBNlsS1L1ZrYXkETziYnW2nh6-yJKw/exec',
+  const res = await fetch(url ,
     {
       method: 'POST',
       body: formData
@@ -166,6 +168,78 @@ async function sendForm(e) {
   if (data.result != 'success') form.querySelector('.submit').setAttribute('disabled', false);
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////* START OF TRANSFER FORM */
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function startTransferForm() {
+  // Elements
+  const imgInputs = document.querySelectorAll('.input-file');
+  const imgSpans = document.querySelectorAll('.image-span');
+  let prevAmount = '';
+  const amountInputs = document.querySelectorAll('.input-amount');
+
+  // Listeners
+  imgInputs.forEach(input => input.addEventListener('change', showPreview))
+  amountInputs.forEach(input => {
+    input.addEventListener('input', displayAmount);
+    input.addEventListener('focus', displayAmount);
+    input.addEventListener('focusout', displayCurrency);
+  })
+
+  function showPreview() {
+    const img = this.files[0]; // will return a File object containing information about the selected file
+    // File validations here (you may want to make sure that the file is an image)
+    const imgWrappers = document.querySelectorAll('.transfer-wrapper--form-img');
+    
+    const reader = new FileReader();
+    reader.onload = function(data) {
+      // what you want to do once the File has been loaded
+      // you can use data.target.result here as an src for an img tag in order to display the uplaoded image
+      imgWrappers.forEach(wrapper => {
+        if(img.type === "image/jpeg") {
+          const imgElement = document.createElement('img');
+          imgElement.src = data.target.result; // assume you have an image element somewhere, or you may add it dynamically
+          imgSpans.forEach(span => {
+            span.innerHTML = img.name;
+            span.classList.remove('error');
+          })
+          wrapper.innerHTML = '';
+          wrapper.appendChild(imgElement);
+        } else {
+          imgSpans.forEach(span => {
+            span.innerHTML = 'ERROR - Suba una imagen';
+            span.classList.add('error');
+          })
+          wrapper.innerHTML = '';
+        }
+      })
+    }
+    reader.readAsDataURL(img);
+  }
+
+  function displayAmount() {
+    let currentAmount = this.value;
+    // string.split(/ /)[0].replace(/[^\d]/g, '')
+    const stringNumber = currentAmount.toString();
+    const decimalDigits = stringNumber.split('.')[1] || false;
+    if(isNaN(+currentAmount)) {
+      this.value = prevAmount;
+    } else if(decimalDigits.length > 2 || stringNumber.split('.').length > 2) {
+        this.value = prevAmount;
+      } else {
+        prevAmount = currentAmount;
+    } 
+  }
+  function displayCurrency() {
+    function format(n) {
+      return n.toFixed(2).replace('.', ',').replace(/\d{3}(?=(\d{3})*,)/g, function(s) {
+        return '.' + s
+      })
+    }
+    this.value = `${this.dataset.currency} ${format(+this.value)}`;
+  }
+
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -637,10 +711,12 @@ function selectPayment() {
   const paymentDOM = document.querySelector('.payment-list');
 
   function changePayment() {
-    const selectedPayment = paymentDOM.querySelector(`.${this.value}`);
+    const selectedPayment = paymentDOM.querySelector(`.${selectDOM.value}`);
     [...paymentDOM.children].forEach(child => child.classList.add('display-none'));
     selectedPayment.classList.remove('display-none');
   };
+  
+  changePayment();
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

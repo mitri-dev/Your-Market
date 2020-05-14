@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Your Market</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="icon" href="./css/imgs/icon.png" />
 </head>
@@ -92,25 +93,31 @@
         <section class="contact">
             <h1 class="banner-title">contacto</h1>
             <div class="contact--content">
+
                 <form>
                     <p class="form-message">¡Déjanos tus datos y nos estaremos comunicando en el menor tiempo posible!
                     </p>
                     <div>
                         <div class="input-wrapper">
-                            <label for="name">Nombre</label><input required class="input" type="text" name="name"
-                                id="name">
+                            <label for="name">Nombre</label>
+                            <input required class="input" type="text" name="name" id="name">
                         </div>
                         <div class="input-wrapper">
-                            <label for="email">E-mail</label><input required class="input" type="email" name="email"
-                                id="email">
+                            <label for="email">E-mail</label>
+                            <input required class="input" type="email" name="email" id="email">
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="file">File</label>
+                            <input required class="input" type="file" name="file" id="file">
                         </div>
                     </div>
                     <div class="msg-wrapper">
-                        <label for="msg">Mensaje:</label><textarea required minlength="7" class="msg" name="msg"
-                            id="msg"></textarea>
+                        <label for="msg">Mensaje:</label>
+                        <textarea required minlength="7" class="msg" name="msg" id="msg"></textarea>
                     </div>
                     <input class="submit" type="submit" value="ENVIAR">
                 </form>
+
                 <div class="contact--socials">
                     <div>
                         <li>
