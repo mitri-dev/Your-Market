@@ -154,7 +154,7 @@ function showMenu() {
 async function sendForm(e) {
   e.preventDefault();
   form.querySelector('.submit').setAttribute('disabled', true);
-  const url = './post.php';
+  const url = './js/post.php';
   // Create and populate formData
   const formData = new FormData(form);
   const res = await fetch(url ,
