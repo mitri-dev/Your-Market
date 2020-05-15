@@ -31,7 +31,7 @@
             <div class="nav-links-wrapper">
                 <a class="nav-links" id="home" href="#">Inicio</a>
                 <a class="nav-links" id="products" href="#">Productos</a>
-                <a class="nav-links" id="contact" href="#">Contácto</a>
+                <a class="nav-links" id="contact" href="#">Contáctanos</a>
             </div>
         </nav>
 
@@ -42,7 +42,7 @@
                 <div class="cart-items cart-items-mobile">0</div>
             </div>
             <div class="burger-menu">
-                <a class="nav-links" id="home" href="#">Inicio</a>
+                <a class="nav-links" id="home" href="#">inicio</a>
                 <a class="nav-links" id="products" href="#">Productos</a>
                 <a class="nav-links" id="contact" href="#">Contácto</a>
             </div>
@@ -50,10 +50,8 @@
     </header>
 
     <main>
-
-        <section class="home">
-            <h1 class="banner-title">Inicio</h1>
-            <div class="home-1">
+        <section class="home promotions">
+            <div class="slider-wrapper promotions-1">
                 <ul class="slider">
                     <li class="slide">
                         <div>Imagen</div>
@@ -64,26 +62,38 @@
                     <li class="slide">
                         <div>Imagen</div>
                     </li>
-                    <div class="slider-controls">
-                        <div class="slider-arrows">
-                            <div class="slider-arrow left">&lt;</div>
-                            <div class="slider-arrow right">&gt;</div>
-                        </div>
-                        <ul class="slider-dots">
-                            <li class="slider-dot active"></li>
-                            <li class="slider-dot"></li>
-                            <li class="slider-dot"></li>
-                        </ul>
-                    </div>
                 </ul>
-
+                <div class="slider-arrow left">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" /></svg>
+                </div>
+                <div class="slider-arrow right">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" /></svg>
+                </div>
+                <ul class="slider-dots">
+                    <li class="slider-dot active"></li>
+                    <li class="slider-dot"></li>
+                    <li class="slider-dot"></li>
+                </ul>
+            </div>
+            <div class="promotions-2">
+                <a href="#">
+                    <div class="box">Promo</div>
+                </a>
+                <a href="#">
+                    <div class="box">Promo</div>
+                </a>
+                <a href="#">
+                    <div class="box">Promo</div>
+                </a>
             </div>
         </section>
 
         <section class="products">
-            <h1 class="banner-title">productos</h1>
+            <h2 class="banner-title banner-title--header">productos</h2>
 
-            <ul class="products--content"></ul>
+            <ul class="products-content"></ul>
 
             <div class="products--all">
                 <a href="./productos.html?categoria=todos" class="banner-title">Ver Todos Los Productos</a>
@@ -91,8 +101,8 @@
         </section>
 
         <section class="contact">
-            <h1 class="banner-title">contacto</h1>
-            <div class="contact--content">
+            <h2 class="banner-title banner-title--header">Contáctanos</h2>
+            <div class="contact-content">
 
                 <form>
                     <p class="form-message">¡Déjanos tus datos y nos estaremos comunicando en el menor tiempo posible!
@@ -114,16 +124,16 @@
                     <input class="submit" type="submit" value="ENVIAR">
                 </form>
 
-                <div class="contact--socials">
+                <div class="contact-socials">
                     <div>
                         <li>
-                            <p><label>Dirección:</label>Carrera 43a #8sur - 15, Oficina 402 Medellín - Antioquia</p>
+                            <p><label>Dirección:</label>Av. XX - Calle XX, Oficina XXX</p>
                         </li>
                         <li>
-                            <p><label>Telefono:</label>0424-424-4242</p>
+                            <p><label>Telefono:</label>0424-XXX-XXXX</p>
                         </li>
                         <li>
-                            <p><label>Correo:</label>ejemplo@dirección.com</p>
+                            <p><label>Correo:</label>example@email.com</p>
                         </li>
                     </div>
                 </div>

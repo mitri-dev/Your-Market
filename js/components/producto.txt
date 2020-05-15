@@ -1,5 +1,5 @@
 <section class="producto">
-    <h1 class="banner-title">TITLE</h1>
+    <h1 class="banner-title banner-title--header"><p>TITLE</p></h1>
     <div class="contenido">
         <div>
             <img src="IMG_SRC" alt="">

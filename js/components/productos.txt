@@ -5,7 +5,7 @@
 
     </div>
     <div>
-    <h1 class="banner-title">TITLE</h1>
+    <h1 class="banner-title banner-title--header">TITLE</h1>
     <section class="products-section">
         <ul class="products-list"></ul>
     </section>

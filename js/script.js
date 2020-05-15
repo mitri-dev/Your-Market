@@ -131,7 +131,7 @@ function ease(t, b, c, d) {
 function smoothScroll(target, duration = 350) {
   const targetPosition = target.getBoundingClientRect().top;
   const startPosition = window.pageYOffset;
-  const offset = 190;
+  const offset = 178;
   let startTime = null;
 
   function animation(currentTime) {
@@ -242,10 +242,76 @@ function startTransferForm() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////* START OF SLIDER */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function startSlider() {
+  // Elements
+  const sliderWrapper = document.querySelector('.slider-wrapper');
   const slider = document.querySelector('.slider');
   const slides = document.querySelectorAll('.slide');
   const sliderArrows = document.querySelectorAll('.slider-arrow');
   const sliderDots = document.querySelectorAll('.slider-dot');
+  let isDown = false;
+  let Xi;
+  let scrollLeft;
+  let run = true;
+
+  // Listeners
+  sliderWrapper.addEventListener('mousedown', e => {
+    isDown = true;
+    Xi = e.pageX - sliderWrapper.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+    drag(e);
+  });
+  sliderWrapper.addEventListener('mouseleave', dragOut);
+  sliderWrapper.addEventListener('mouseup', dragOut);
+  sliderWrapper.addEventListener('mousemove', drag);
+
+  function dragOut(e) {
+    isDown = false;
+    const x = e.pageX - slider.offsetLeft;
+    const walk = x - Xi - slider.getBoundingClientRect().left;
+    const offset = 100;
+    if(run) {
+
+      if(-offset < walk && walk < offset) {
+        sliderDots.forEach((dot, i) => {
+          if(dot.className.includes('active')) {
+            smoothSliderScroll(slides[i])
+          }
+        })
+        run = false;
+        return
+      } 
+      if(walk < 0) {
+        let flag = true;
+        sliderDots.forEach((dot, j) => {
+          if (dot.className.includes('active') && flag) {
+            smoothSliderScroll(slides[j + 1]);
+            dot.classList.remove('active');
+            sliderDots[j + 1].classList.add('active');
+            flag = false;
+          }
+        });
+      } else if(walk > 0) {
+        sliderDots.forEach((dot, i) => {
+          if (dot.className.includes('active')) {
+            smoothSliderScroll(slides[i - 1]);
+            dot.classList.remove('active');
+            sliderDots[i - 1].classList.add('active');
+          }
+        });
+      }
+      run = false;
+    }
+  }
+
+  function drag(e) {
+    if(!isDown) return
+    run = true;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = x - Xi - slider.getBoundingClientRect().left;
+    slider.scrollLeft = scrollLeft - walk;
+  }
+
 
   function smoothSliderScroll(target, duration = 350) {
     const targetPosition = target.getBoundingClientRect().left;
@@ -338,13 +404,16 @@ async function startCart() {
         <li data-id="${product.id}">
           <div class="item-img">
               <img src="${product.image}" alt="item">
-              <!-- <a class="item-link" href="${product.link}"> To Active Img Link -->
+              <a  class="item-link" href="./producto.html?producto=${product.id}"></a>
+              <!-- UNCOMMENT TO ACTIVATE SCROLL FEATURE
               <div class="item-img--screen">
-                  <button class="add-to-cart" data-id="${product.id}">Añadir Al Carro</button>
+                 <button class="add-to-cart" data-id="${product.id}">Añadir Al Carro</button>
               </div>
+              -->
           </div>
           <a data-id="${product.id}" class="item-title">${product.title}</a>
           <h1 class="item-price">$${product.price}</h1>
+          <button class="add-to-cart" data-id="${product.id}">Añadir Al Carro</button> 
         </li>
         `;
     });
@@ -363,13 +432,16 @@ async function startCart() {
         <li data-id="${product.id}">
           <div class="item-img">
               <img src="${product.image}" alt="item">
-              <!-- <a class="item-link" href="${product.link}"> To Active Img Link -->
+              <a  class="item-link" href="./producto.html?producto=${product.id}"></a>
+              <!-- UNCOMMENT TO ACTIVATE SCROLL FEATURE
               <div class="item-img--screen">
-                  <button class="add-to-cart" data-id="${product.id}">Añadir Al Carro</button>
+                 <button class="add-to-cart" data-id="${product.id}">Añadir Al Carro</button>
               </div>
+              -->
           </div>
           <a data-id="${product.id}" class="item-title">${product.title}</a>
           <h1 class="item-price">$${product.price}</h1>
+          <button class="add-to-cart" data-id="${product.id}">Añadir Al Carro</button> 
         </li>
         `;
     });
@@ -728,7 +800,7 @@ async function loadCategories() {
   categoriesDropdownDOMArray.forEach(btn => btn.addEventListener('click', openCategories))
   const keys = Object.keys(categories);
   for (const key of keys) {
-    categoriesDOMArray.forEach(list => list.innerHTML += `<li><a href="./productos.html?categoria=${key}">${key}</a></li>`);
+    categoriesDOMArray.forEach(list => list.innerHTML += `<a href="./productos.html?categoria=${key}"><li class="category-link">${key}</li></a>`);
   }
 
   function openCategories() {
@@ -784,7 +856,7 @@ function startSearchbar() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function getProductsTag() {
   // Elements
-  const productsContent = document.querySelector('.products--content');
+  const productsContent = document.querySelector('.products-content');
   const keys = Object.keys(categories);
   let counter = 0;
   for (const key of keys) {

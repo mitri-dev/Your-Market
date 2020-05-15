@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:300&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400&display=swap');
-@font-face {font-family: "Fashion Fetish Light";src: url("./fonts/Fashion\ Fetish\ Light.ttf")}
-@font-face {font-family: "Fashion Fetish Regular";src: url("./fonts/Fashion\ Fetish\ Regular.ttf")}
-@font-face {font-family: "Fashion Fetish Bold";src: url("./fonts/Fashion\ Fetish\ Bold.ttf")}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
   margin: 0;
@@ -45,7 +43,6 @@
 }
 
 body {
-  font-family: "Fashion Fetish Regular";
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
@@ -183,7 +180,7 @@ a {text-decoration: none;color: inherit;}
 header.fixed {
   position: fixed;
   top: 0;
-  transform: translateY(-9rem);
+  transform: translateY(-8rem);
 }
 header.fixed.fixed-100 {
   transition: all 0.2s ease-out;
@@ -194,7 +191,7 @@ nav {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   align-items: center;
-  height: 4rem;
+  height: 3rem;
   background-color: var(--primaryColor);
   color: var(--primaryFontColor);
   box-shadow: var(--boxShadow);
@@ -301,6 +298,7 @@ nav .nav-links:first-of-type::before {
   box-shadow: var(--boxShadow);
   min-width: 12rem;
   text-align: center;
+  text-transform: capitalize;
   z-index: 10000;
 }
 .category-list > * {
@@ -322,7 +320,10 @@ nav .nav-links:first-of-type::before {
   grid-gap: 1px;
   font-size: 80%;
 }
-
+nav .nav-links .category-link {font-size: 0.85rem;}
+.category-link {
+  display: inline;
+}
 .text-hero {
   color: #ffced4;
   line-height: 100%;
@@ -345,44 +346,59 @@ main {
   border-radius: 0.3125rem;
 }
 main.fixed {
-  margin-top: 9rem;
+  margin-top: 8rem;
 }
 
-
+section {  
+  margin: 0 auto;
+  margin-top: 3rem;
+  max-width: 60rem;
+}
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////* START OF HOME */
+/*///////////////////////////////////////////////////////////////////////////////////////////////////* START OF PROMOTIONS */
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-section {
-  margin-top: 12rem;
-}
-
-.home {
+.promotions {
   display: grid;
+  grid-template-columns: 40rem 1fr;
+  margin-left: auto;
+  margin-right: auto;
+  grid-gap: 2rem;
 }
-.home-1 {
+.promotions-1 {
+  width: 100%;
+  height: 20rem;
+  position: relative;
 }
-.home-2 {
-
+.promotions-2 {
+  display: grid;
+  grid-gap: 1rem;
+}
+.promotions-2 .box {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  background-color: #eee;
 }
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////* START OF PRODUCTS */
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-.products--content {
+.products-content {
   margin: 3rem auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  max-width: 55rem;
   grid-gap: 0.1rem;
   justify-content: center;
 }
-.products--content a:first-of-type {
+.products-content a:first-of-type {
   grid-row: 1/3;
 }
-.products--content a:first-of-type li {
+.products-content a:first-of-type li {
   height: 100%;
 }
-.products--content li {
+.products-content li {
   list-style: none;
   height: 10rem;
   background: var(--primaryColor);
@@ -398,7 +414,7 @@ section {
   transition: all 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
-.products--content li:hover {
+.products-content li:hover {
   background-color: var(--primaryColorHover);
 }
 
@@ -421,8 +437,17 @@ section {
 
 .producto .descripcion h3 {
   color: var(--primaryColor);
+  text-align: center;
+  font-size: 1.5rem;
 }
-.producto .descripcion h4 {color: #333;}
+.producto .descripcion h4 {
+  color: #333;
+  text-align: justify;
+}
+.producto .descripcion .add-to-cart {
+  font-size: 1.2rem;
+  padding: 1rem 0;
+}
 
 
 
@@ -432,37 +457,44 @@ section {
   max-width: 25rem;
   margin-left: auto;
 }
-.producto .descripcion .add-to-cart {
+/* .producto .descripcion .add-to-cart {
   position: unset;
   transform: translateX(0%);
   font-size: 1rem;
   font-family: inherit;
   height: 3rem;
-}
+} */
 
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////* START OF CONTACT */
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-.contact--content {
+.contact-content {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 2rem;
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+}
+
+.contact-content form {
   max-width: 650px;
   margin: 0 auto;
 }
 
-.contact--socials {
+.contact-content > * {
+  padding: 3rem;
+}
+
+.contact-socials {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.contact--socials p {
+.contact-socials p {
   text-align: justify;
   margin-top: auto 0;
 }
-.contact--socials label {
+.contact-socials label {
   text-decoration: underline;
   display: block;
 }
@@ -475,85 +507,58 @@ section {
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*///////////////////////////////////////////////////////////////////////////////////////////////////////* START OF SLIDER */
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-.slider{
+.slider {
   display: flex;
-  width: 40rem;
-  height: 20rem;
+  width: 100%;
+  height: 100%;
   margin: auto;
   overflow: hidden;
-  margin-bottom: 3rem;
+}
+.slider-wrapper {
+  position: relative;
 }
 .slide {
-  background-color: #ddd;
+  background-color: #eee;
   height: inherit;
   -webkit-box-flex: 0;
           flex: 0 0 100%;
   display: -webkit-box;
   display: flex;
   align-items: center;
-  padding: 0 3rem;
+  padding: 0 6rem;
 }
-.slider-controls {
-  height: inherit;
-  width: inherit;
+.slider-arrow {
   position: absolute;
-}
-.slider-controls .slider-arrows {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 100%;
-  height: 2rem;
-}
-.slider-controls .slider-arrows > * {
-  position: absolute;
-  background-color: var(--primaryColor);
-  border: 1px solid var(--primaryFontColor);
-  height: 2rem;
   width: 2rem;
-  border-radius: 50%;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-          align-items: center;
-  color: var(--primaryFontColor);
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
-  transition: var(--backgroundcolorTransition);
+  fill: var(--primaryColor);
 }
-.slider-controls .slider-arrows > *:hover {background-color: var(--primaryColorHover);}
-
-.slider-controls .slider-arrows .left {left: -2.5rem;}
-.slider-controls .slider-arrows .right {right: -2.5rem;}
-
-.slider-controls .slider-dots {
-  height: 0.625rem;
-  width: 12.5rem;
-  position: absolute;
-  bottom: -2.1875rem;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  display: -webkit-box;
+.slider-arrow.right {
+  right: 0;
+}
+.slider-arrow.left {
+  transform: translateY(-50%) rotate(180deg);
+}
+.slider-dots {
+  height: 2rem;
   display: flex;
-  -webkit-box-pack: space-evenly;
-          justify-content: space-evenly;
+  justify-content: center;
+  transform: translateY(-100%);
 }
-.slider-controls .slider-dots li {
+.slider-dot {
+  background-color: transparent;
+  border: 1px solid #333;
   height: 1rem;
   width: 1rem;
-  background-color: transparent;
-  border: 0.0625rem solid #333;
   border-radius: 50%;
-  -webkit-transition: var(--backgroundcolorTransition);
-  transition: var(--backgroundcolorTransition);
+  margin: 0 1rem;
   cursor: pointer;
 }
-.slider-controls .slider-dots li:hover {background-color: #555;}
-.slider-controls .slider-dots li.active {background-color: #333;}
+.slider-dot.active {
+  background-color: #555;
+}
 
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////* START OF FORM  */
@@ -658,7 +663,7 @@ footer {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   letter-spacing: 0.0625rem;
   padding: 0.625rem;
   font-weight: 400;
@@ -667,7 +672,7 @@ footer {
   background-color: #3cc637;
   */
   background-color: var(--primaryColor);
-  color: var(--primaryFontColor);
+  color: #fff;
   text-transform: uppercase;
   position: relative;
 }
@@ -680,6 +685,20 @@ a.banner-title, h4.banner-title {
 a.banner-title:hover {
   background-color: var(--primaryColorHover);
 }
+
+.banner-title--header {
+  background-color: transparent;
+  color: #333;
+}
+.banner-title--header::before, .banner-title--header::after {
+  content: '';
+  display: block;
+  height: 0.1rem;
+  margin: 2rem;
+  width: 100%;
+  background-color: #333;
+}
+.banner-title--header p {width: 50rem;}
 
 .banner-left, .banner-rigth {
   background-color: var(--primaryColor);
@@ -969,7 +988,6 @@ a.banner-title:hover {
   margin: 2em 0;
   margin-top: 0.5em;
   padding: 0 0.5em;
-  font-family: "Fashion Fetish Regular";
 }
 option { 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1049,7 +1067,6 @@ text-transform: capitalize;
   margin-bottom: 2em;
 }
 .banner-btn {
-  font-family: "Fashion Fetish Regular";
   display: grid;
   align-content: center;
   margin: 1em auto;
@@ -1164,9 +1181,9 @@ text-transform: capitalize;
 .item-img--screen:hover {  
 }
 .add-to-cart {
-  position: absolute;
+  /* position: absolute; */
   right: 0;
-  transform: translateX(101%);
+  /* transform: translateX(101%); */
   top: 70%;
   background-color: var(--primaryColor);
   color: var(--primaryFontColor);
@@ -1198,6 +1215,7 @@ text-transform: capitalize;
   text-align: center;
   margin-bottom: 1rem;
   margin-top: auto;
+  font-size: 1.5rem;
 }
 /*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 /*//////////////////////////////////////////////////////////////////////////////////////////////////* END OF SHOPPING CART */
@@ -1208,7 +1226,7 @@ text-transform: capitalize;
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 @media only screen and (max-width: 968px) { 
   :root {
-    font-size: 15px;
+    font-size: 16px;
   }
   nav {
     font-size: 1rem;
