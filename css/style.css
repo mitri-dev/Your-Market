@@ -342,6 +342,7 @@ nav .nav-links .category-link {font-size: 0.85rem;}
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////* START OF MAIN */
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 main {
+  padding: 0 2rem;
   min-height: 50vh;
   border-radius: 0.3125rem;
 }
@@ -360,6 +361,7 @@ section {
 .promotions {
   display: grid;
   grid-template-columns: 40rem 1fr;
+  grid-template-columns: repeat(3, 1fr);
   margin-left: auto;
   margin-right: auto;
   grid-gap: 2rem;
@@ -368,6 +370,7 @@ section {
   width: 100%;
   height: 20rem;
   position: relative;
+  grid-column: 1/3;
 }
 .promotions-2 {
   display: grid;
@@ -524,8 +527,8 @@ section {
           flex: 0 0 100%;
   display: -webkit-box;
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 0 6rem;
 }
 .slider-arrow {
   position: absolute;
@@ -636,7 +639,6 @@ form .submit:hover {
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 footer {
   min-height: 20vh;
-  margin-top: 12rem;
   background: #333;
   color: var(--primaryFontColor);
   display: -webkit-box;
@@ -779,7 +781,8 @@ a.banner-title:hover {
   grid-template-columns: 1fr 2fr;
 }
 .transfer-wrapper--list .national-number {
-  font-size: 0.9rem;
+  font-size: 0.8em;
+  margin-left: auto;
 }
 
 .transfer-wrapper--form {
@@ -1268,27 +1271,8 @@ text-transform: capitalize;
   :root {
     font-size: 14px;
   }
-
-  .cart-items {
-    font-size: 14px;
-    right: 1.2em;
-  }
-  
   nav {
     height: 2.5rem;
-  }
-  .estrellas .slider{
-    width: 25rem;
-  }
-  .slider-controls {
-    height: 35rem;
-  }
-  .estrellas .slide {
-    flex-wrap: wrap;
-  }
-  .estrellas .slide img{
-    margin: auto;
-    margin-bottom: 0.625rem;
   }
 }
 
@@ -1303,21 +1287,12 @@ text-transform: capitalize;
   .products-list {
     max-width: unset;
   }
-
-  .cart-items {
-    font-size: 10px;
-    right: 0.5em;
-  }
   
 
   /* NAVIGATION */
-  nav.fixed, nav{
-    display: none;
-  }
 
   nav.mobile {
     height: 4rem;
-    display: flex;
     position: relative;
     z-index: 2;
   }
@@ -1379,11 +1354,6 @@ text-transform: capitalize;
   }
 
 
-  main {
-    display: grid;
-    align-content: center;
-    min-height: 70rem;
-  }
   footer {
   }
 
