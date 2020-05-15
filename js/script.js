@@ -11,52 +11,53 @@
 let products;
 let categories;
 let cartTotal;
+let display = 6;
 
-  // Getting the products - Populates Array of Products
-  async function getProducts() {
-    if(sessionStorage.getItem('productsBPS')) {
-      products = JSON.parse(sessionStorage.getItem('productsBPS'));
+// Getting the products - Populates Array of Products
+async function getProducts() {
+  if(sessionStorage.getItem('productsBPS')) {
+    products = JSON.parse(sessionStorage.getItem('productsBPS'));
 
-      categories = products
-        .map(product => product.category)
-        .reduce((obj, e) => {
-          if(!obj[e]){
-            obj[e] = 0;
-          }
-          obj[e]++;
-          return obj;
-        }, {});
-      categories.todos = products.length;
+    categories = products
+      .map(product => product.category)
+      .reduce((obj, e) => {
+        if(!obj[e]){
+          obj[e] = 0;
+        }
+        obj[e]++;
+        return obj;
+      }, {});
+    categories.todos = products.length;
 
-    } else {
-      const res = await fetch('./js/products.json');
-      const data = await res.json();
-      
-      products = data.items.map(item => {
-        const { title, price } = item.fields;
-        const { id } = item.sys;
-        const image = item.fields.image.fields.file.url;
-        const link = '#item-link';
-        const { amount } = item.fields;
-        const { category } = item.fields;
-        return { title, price, id, image, link, amount, category };
-      });
+  } else {
+    const res = await fetch('./js/products.json');
+    const data = await res.json();
+    
+    products = data.items.map(item => {
+      const { title, price } = item.fields;
+      const { id } = item.sys;
+      const image = item.fields.image.fields.file.url;
+      const link = '#item-link';
+      const { amount } = item.fields;
+      const { category } = item.fields;
+      return { title, price, id, image, link, amount, category };
+    });
 
-      categories = products
-        .map(product => product.category)
-        .reduce((obj, e) => {
-          if(!obj[e]){
-            obj[e] = 0;
-          }
-          obj[e]++;
-          return obj;
-        }, {});
-      categories.todos = products.length;
+    categories = products
+      .map(product => product.category)
+      .reduce((obj, e) => {
+        if(!obj[e]){
+          obj[e] = 0;
+        }
+        obj[e]++;
+        return obj;
+      }, {});
+    categories.todos = products.length;
 
 
-      sessionStorage.setItem('productsBPS', JSON.stringify(products));
-    }
+    sessionStorage.setItem('productsBPS', JSON.stringify(products));
   }
+}
 
 
 
@@ -396,10 +397,58 @@ async function startCart() {
   }
   let addToCartBtns;
 
-  // UI - Display Product
+
+  const nextBtn = `
+  <a href="#" class="products-btn next">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+    </svg>
+  </a>
+  `;
+  const prevBtn = `
+  <a href="#" class="products-btn prev">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
+    </svg>
+  </a>
+  `;
+  // DISPLAY ALL PRODUCTS
   function displayAllProducts() {
-    let result = '';
-    products.forEach(product => {
+    // PAGINATION
+    let page = 1;
+    const lastPage = Math.floor(products.length / display) + 1
+    const buttonsList = document.querySelector('.products-btn-list') || document.createElement('div');
+    
+    if(products.length != display) {
+      buttonsList.innerHTML += prevBtn;
+      for (let i = 0; i < lastPage; i++) {
+        buttonsList.innerHTML += `<a href="#" class="products-btn">${i + 1}</a>`;
+      }
+      buttonsList.innerHTML += nextBtn
+      const buttons = document.querySelectorAll('.products-btn'); 
+      buttons.forEach(btn => btn.addEventListener('click', changePage))
+    }
+    function changePage () {
+      if(this.className.includes('prev')) {
+        if(page === 1) return
+        page--;
+        populateList();
+        return
+      }
+      if(this.className.includes('next')) {
+        if(page === lastPage) return
+        page++;
+        populateList();
+        return
+      }
+      page = +this.innerHTML;
+      populateList()
+    }
+    populateList()
+    function populateList() {
+      let result = '';
+      products.forEach((product, i) => {
+        if((i + 1 > display * page) || (i + 1 <= (display * page) - display)) return;
       result += `
         <li data-id="${product.id}">
           <div class="item-img">
@@ -411,23 +460,59 @@ async function startCart() {
               </div>
               -->
           </div>
-          <a data-id="${product.id}" class="item-title">${product.title}</a>
+          <a href="./producto.html?producto=${product.id}" class="item-title">${product.title}</a>
           <h1 class="item-price">$${product.price}</h1>
           <button class="add-to-cart" data-id="${product.id}">Añadir Al Carro</button> 
         </li>
         `;
     });
     if (productsList) productsList.innerHTML = result;
+    }
     setCartValues();
     cart.forEach(item => addCartItem(item));
 
-    document.querySelectorAll('.item-title').forEach(link => link.addEventListener('click', goToProduct));
   }
+
+
+  // DISPLAY PRODUCTS FROM CATEGORY
   function displayProducts(title) {
     const filteredProducts = [...products.filter(item => item.category === title)];
-
+    // PAGINATION
+    let page = 1;
+    const lastPage = Math.floor(filteredProducts.length / display) + 1
+    const buttonsList = document.querySelector('.products-btn-list') || document.createElement('div');
+    
+    if(filteredProducts.length > display) {
+      buttonsList.innerHTML += prevBtn;
+      for (let i = 0; i < lastPage; i++) {
+        buttonsList.innerHTML += `<a href="#" class="products-btn">${i + 1}</a>`;
+      }
+      buttonsList.innerHTML += nextBtn
+      const buttons = document.querySelectorAll('.products-btn'); 
+      buttons.forEach(btn => btn.addEventListener('click', changePage))
+    }
+  
+    function changePage () {
+      if(this.className.includes('prev')) {
+        if(page === 1) return
+        page--;
+        populateList();
+        return
+      }
+      if(this.className.includes('next')) {
+        if(page === lastPage) return
+        page++;
+        populateList();
+        return
+      }
+      page = +this.innerHTML;
+      populateList()
+    }
+    populateList();
+    function populateList() {
     let result = '';
-    filteredProducts.forEach(product => {
+    filteredProducts.forEach((product, i) => {
+      if((i + 1 > display * page) || (i + 1 <= (display * page) - display)) return;
       result += `
         <li data-id="${product.id}">
           <div class="item-img">
@@ -439,17 +524,17 @@ async function startCart() {
               </div>
               -->
           </div>
-          <a data-id="${product.id}" class="item-title">${product.title}</a>
+          <a href="./producto.html?producto=${product.id}" class="item-title">${product.title}</a>
           <h1 class="item-price">$${product.price}</h1>
           <button class="add-to-cart" data-id="${product.id}">Añadir Al Carro</button> 
         </li>
         `;
-    });
-    if (productsList) productsList.innerHTML = result;
+      });
+      if (productsList) productsList.innerHTML = result;
+    }
     setCartValues();
     cart.forEach(item => addCartItem(item));
 
-    document.querySelectorAll('.item-title').forEach(link => link.addEventListener('click', goToProduct));
   }
 
   function getAddToCartBtns() {
@@ -640,14 +725,7 @@ async function startCart() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////* START OF COMPONENTS */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Elements //
-let productsLinks = document.querySelectorAll('.products--content a');
-let productLinks = document.querySelectorAll('.item-title');
-
-productLinks.forEach(link => link.addEventListener('click', goToProduct));
-
-// Functions //
-// Products Page
+// GET PRODUCTS PAGE
 async function getProductsPage() {
   // Get Products HTML TEXT
   const res = await fetch('./js/components/productos.txt');
@@ -672,11 +750,7 @@ async function getProductsPage() {
   startSearchbar();
 }
 
-// Single Product Page
-async function goToProduct(e) {
-  e.preventDefault();
-  window.location.href = `./producto.html?producto=${e.target.parentElement.dataset.id}`;
-}
+// GET SINGLE PRODUCT PAGE
 async function getProductPage() {
   startCart();
   // Get Products HTML TEXT
@@ -839,7 +913,7 @@ function startSearchbar() {
         <img src="${product.image}" alt="item">
         </div>
         <div data-id="${product.id}">
-        <a data-id="${product.id}" class="item-title">${product.title}</a>
+        <a href="./producto.html?producto=${product.id}" class="item-title">${product.title}</a>
             <h1 class="item-price">$${product.price}</h1>
             </div>
             </li>
@@ -847,7 +921,6 @@ function startSearchbar() {
     });
     searchResult.innerHTML = html;
     if(this.value === '') searchResult.innerHTML = '';
-    document.querySelectorAll('.item-title').forEach(link => link.addEventListener('click', goToProduct));
   }
 };
 

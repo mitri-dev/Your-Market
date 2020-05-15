@@ -8,6 +8,7 @@
     <h1 class="banner-title banner-title--header">TITLE</h1>
     <section class="products-section">
         <ul class="products-list"></ul>
+        <div class="products-btn-list"></div>
     </section>
     </div>
 </section>
