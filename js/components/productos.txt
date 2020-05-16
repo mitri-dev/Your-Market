@@ -1,5 +1,5 @@
 <section class="products-wrapper">
-    <div class="category-section">
+    <div class="category-section side">
         <h1 class="banner-title">categorías</h1>
         <ul class="category-list open"></ul>
 

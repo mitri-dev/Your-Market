@@ -67,8 +67,8 @@ const navMobile = document.querySelector('nav.mobile');
 const brandBanner = document.querySelector('.brand-banner');
 const navLinks = nav.querySelectorAll('a');
 const burger = document.querySelector('.burger')
-const burgerMenu = document.querySelector('.burger-menu')
-const navMobileLinks = burgerMenu.querySelectorAll('a');
+// const burgerMenu = document.querySelector('.burger-menu')
+// const navMobileLinks = burgerMenu.querySelectorAll('a');
 
 // Listeners
 window.addEventListener('scroll', debounce(slideIn, 5));
@@ -77,12 +77,12 @@ navLinks.forEach(link =>
     smoothScroll(document.querySelector(`.${link.id}`));
   })
 );
-navMobileLinks.forEach(link =>
-  link.addEventListener('click', () => {
-    smoothScroll(document.querySelector(`.${link.id}`));
-  })
-);
-burger.addEventListener('click', showMenu)
+// navMobileLinks.forEach(link =>
+//   link.addEventListener('click', () => {
+//     smoothScroll(document.querySelector(`.${link.id}`));
+//   })
+// );
+// burger.addEventListener('click', showMenu)
 
 
 
@@ -233,7 +233,7 @@ function startTransferForm() {
     } 
   }
   function displayCurrency() {
-    this.value = `${this.dataset.currency} ${'$ '+format(+this.value)}`;
+    this.value = `${this.dataset.currency} ${format(+this.value)}`;
   }
 
 }
@@ -377,13 +377,13 @@ function startSlider() {
 async function startCart() {
   // Elements
   const cartBtn = document.querySelector('.cart-btn');
-  const cartBtnMobile = document.querySelector('.cart-btn-mobile');
   const closeCartBtn = document.querySelector('.close-cart');
+  // const cartBtnMobile = document.querySelector('.cart-btn-mobile');
   // const clearCartBtn = document.querySelector('.clear-cart');
   const cartDOM = document.querySelector('.cart');
   const cartOverlay = document.querySelector('.cart-overlay');
   const cartItemsCount = document.querySelector('.cart-items');
-  const cartItemsCountMobile = document.querySelector('.cart-items-mobile');
+  // const cartItemsCountMobile = document.querySelector('.cart-items-mobile');
   const cartTotalDOM = document.querySelector('.cart-total');
   const cartContent = document.querySelector('.cart-content');
   let productsList = document.querySelector('.products-list');
@@ -534,7 +534,6 @@ async function startCart() {
     }
     setCartValues();
     cart.forEach(item => addCartItem(item));
-
   }
 
   function getAddToCartBtns() {
@@ -596,7 +595,7 @@ async function startCart() {
     cartTotal = parseFloat(tempTotal.toFixed(2));
     cartTotalDOM.textContent = cartTotal;
     cartItemsCount.textContent = itemsTotal;
-    cartItemsCountMobile.textContent = itemsTotal;
+    // cartItemsCountMobile.textContent = itemsTotal;
   }
 
   function addCartItem(item) {
@@ -696,7 +695,7 @@ async function startCart() {
   // Listeners
   closeCartBtn.addEventListener('click', closeCart);
   cartBtn.addEventListener('click', showCart);
-  cartBtnMobile.addEventListener('click', showCart);
+  // cartBtnMobile.addEventListener('click', showCart);
   // clearCartBtn.addEventListener('click', clearCart);
   cartDOM.addEventListener('click', itemControls);
   cartOverlay.addEventListener('click', (e) => {
@@ -859,7 +858,6 @@ function selectPayment() {
       amountInput.value = '$ '+format(cartTotal);
     }
   };
-  
   changePayment();
 };
 
@@ -909,14 +907,14 @@ function startSearchbar() {
     matchArray.map(product => {
         html += `
         <li>
-        <div class="item-img">
-        <img src="${product.image}" alt="item">
-        </div>
-        <div data-id="${product.id}">
-        <a href="./producto.html?producto=${product.id}" class="item-title">${product.title}</a>
+          <a href="./producto?producto=${product.id}" class="item-img">
+            <img src="${product.image}" alt="item">
+          </a>
+          <div data-id="${product.id}">
+            <a href="./producto.html?producto=${product.id}" class="item-title">${product.title}</a>
             <h1 class="item-price">$${product.price}</h1>
-            </div>
-            </li>
+          </div>
+        </li>
         `;
     });
     searchResult.innerHTML = html;
@@ -943,6 +941,7 @@ async function getProductsTag() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function format(n) {
   return n.toFixed(2).replace('.', ',').replace(/\d{3}(?=(\d{3})*,)/g, function(s) {
+    if(s.length === 3) return s
     return '.' + s
   })
 }
