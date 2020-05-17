@@ -89,7 +89,7 @@
             <h2 class="banner-title banner-title--header">Contáctanos</h2>
             <div class="contact-content">
 
-                <form name="your-market" method="POST" data-netlify="true" enctype="multipart/form-data">
+                <form>
                     <p class="form-message">¡Déjanos tus datos y nos estaremos comunicando en el menor tiempo posible!
                     </p>
                     <div>
@@ -100,10 +100,6 @@
                         <div class="input-wrapper">
                             <label for="email">E-mail</label>
                             <input required class="input" type="email" name="email" id="email">
-                        </div>
-                        <div class="input-wrapper">
-                            <label for="file">E-mail</label>
-                            <input required class="input" type="file" name="file" id="file">
                         </div>
                     </div>
                     <div class="msg-wrapper">
@@ -152,15 +148,14 @@
     </div>
 
     <script>
-        // const form = document.querySelector('form');
-        // const submit = form.querySelector('.submit');
+        const form = document.querySelector('form');
     </script>
     <script src="./js/script.js"></script>
     <script>
         async function start() {
             await startCart();
             startSlider();
-            // form.addEventListener('submit', sendForm);
+            form.addEventListener('submit', sendForm);
             loadCategories();
             startSearchbar();
             getProductsTag();
