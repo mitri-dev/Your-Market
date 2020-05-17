@@ -194,7 +194,7 @@ nav {
   justify-content: center;
   height: 3rem;
   background-color: var(--primaryColor);
-  background-image: linear-gradient(0deg, var(--primaryColor),rgb(250, 134, 22));
+  background-image: linear-gradient(0deg,var(--primaryColor), rgba(250, 134, 22, 0.5) 80% , var(--primaryColor));
   color: var(--primaryFontColor);
   box-shadow: var(--boxShadow);
   padding: 0 15%;
@@ -428,7 +428,7 @@ section {
   list-style: none;
   height: 10rem;
   background: var(--primaryColor);
-  background-image: linear-gradient(0deg, var(--primaryColor),rgb(250, 134, 22));
+  background-image: linear-gradient(0deg,var(--primaryColor), rgba(250, 134, 22, 0.5) 80% , var(--primaryColor));
   color: var(--primaryFontColor);
   display: -webkit-box;
   display: flex;
@@ -643,7 +643,7 @@ form .submit {
   margin-top: 1rem;
   height: 2rem;
   background-color: var(--primaryColor);
-  background-image: linear-gradient(0deg, var(--primaryColor),rgb(250, 134, 22));
+  background-image: linear-gradient(0deg,var(--primaryColor), rgba(250, 134, 22, 0.5) 80% , var(--primaryColor));
   color: var(--primaryFontColor);
   font-family: inherit;
   border: 0;
@@ -700,7 +700,7 @@ footer {
   background-color: #3cc637;
   */
   background-color: var(--primaryColor);
-  background-image: linear-gradient(0deg, var(--primaryColor),rgb(250, 134, 22));
+  background-image: linear-gradient(0deg,var(--primaryColor), rgba(250, 134, 22, 0.5) 80% , var(--primaryColor));
   color: #fff;
   text-transform: uppercase;
   position: relative;
@@ -1113,7 +1113,7 @@ text-transform: capitalize;
   font-size: 1em;
   background: var(--primaryColor);
   color: var(--primaryFontColor);
-  background-image: linear-gradient(0deg, var(--primaryColor),rgb(250, 134, 22));  
+  background-image: linear-gradient(0deg,var(--primaryColor), rgba(250, 134, 22, 0.5) 80% , var(--primaryColor));  
   border: 0;
   transition: var(--backgroundcolorTransition);
   cursor: pointer;
@@ -1257,7 +1257,7 @@ text-transform: capitalize;
   /* transform: translateX(101%); */
   top: 70%;
   background-color: var(--primaryColor);
-  background-image: linear-gradient(0deg, var(--primaryColor),rgb(250, 134, 22));
+  background-image: linear-gradient(0deg,var(--primaryColor), rgba(250, 134, 22, 0.5) 80% , var(--primaryColor));
   color: var(--primaryFontColor);
   border: 0;
   padding: 0.5rem 0.7rem;
